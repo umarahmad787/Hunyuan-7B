@@ -1,4 +1,4 @@
-curl http://${LOCAL_IP}:8020/v1/chat/completions -H 'Content-Type: application/json' -d '{
+curl http://localhost:8021/v1/chat/completions -H 'Content-Type: application/json' -d '{
 "model": "${MODEL_PATH}",
 "messages": [
     {
@@ -11,6 +11,7 @@ curl http://${LOCAL_IP}:8020/v1/chat/completions -H 'Content-Type: application/j
     }
 ],
 "max_tokens": 2048,
+"stream": true,
 "temperature":0.7,
 "top_p": 0.6,
 "top_k": 20,

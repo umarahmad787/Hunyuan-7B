@@ -38,11 +38,11 @@ fi
 
 export HOST_GPU_NUM=8
 # 当前机器ip
-export LOCAL_IP=${ip1}
+export LOCAL_IP=$LOCAL_IP
 # 多节点机器ip，逗号隔开
-export NODE_IP_LIST="${ip1}:8,${ip2}:8"
+export NODE_IP_LIST="${LOCAL_IP}:8"
 # 机器节点个数
-export NODES=2
+export NODES=1
 export NODE_NUM=$((${NODES} * ${HOST_GPU_NUM}))
 
 export NCCL_DEBUG=WARN
